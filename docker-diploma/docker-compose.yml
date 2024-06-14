@@ -1,0 +1,65 @@
+version: '3.3'
+
+services:
+
+ php83:
+  build: ./php83
+  container_name: php83
+
+  volumes:
+   - /Users/olha.parkhomenko/Downloads/diploma:/home/www/diploma/ #8081:8081
+   - ./php83/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
+   - ./php83/etc/www.conf:/usr/local/etc/php-fpm.d/www.conf
+   - ./php83/etc/php.ini:/etc/php.ini
+
+  depends_on:
+   - db1
+
+ nginx_hackaton:
+  image: nginx:latest
+  deploy:
+   resources: # Set these values when you know what you do!
+    limits:
+     cpus: '0.2'
+     memory: 100M
+    reservations:
+     cpus: '0.2'
+     memory: 100M
+  container_name: nginx_hackaton
+  domainname: localhost.com
+  ports:
+   - 80:80
+  volumes:
+   - ./nginx/nginx_hackaton/core/nginx.conf:/etc/nginx/nginx.conf
+   - ./nginx/nginx_hackaton/core/sites-enabled:/etc/nginx/sites-enabled/
+   - ./nginx/nginx_hackaton/logs:/var/log/nginx/
+   - /Users/olha.parkhomenko/Downloads/diploma:/home/www/diploma/
+  links:
+   - php83
+   - db1
+
+ db1:
+  image: postgres
+  container_name: postgres_hackaton
+  ports:
+   - 5961:5432
+  volumes:
+   - ./postgresql/postgres:/var/lib/postgresql/data
+  environment:
+    - POSTGRES_USER=nameuser
+    - POSTGRES_PASSWORD=password
+    - POSTGRES_DB=diploma
+
+ adminer:
+  image: adminer
+#  restart: always
+  ports:
+   - 8082:8080
+
+ composer:
+  restart: 'no'
+  image: composer
+  command: install
+  volumes:
+   - /Users/olha.parkhomenko/Downloads/diploma:/home/www/diploma/
+

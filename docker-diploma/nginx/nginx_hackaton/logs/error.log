@@ -1,0 +1,13 @@
+2024/05/06 10:55:29 [emerg] 1#1: host not found in upstream "php81" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/05/07 13:13:59 [warn] 24#24: *103 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 192.168.65.1, server: localhost.com, request: "POST /api/quiz-import HTTP/1.1", host: "localhost.com"
+2024/05/07 13:14:32 [warn] 24#24: *103 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000002, client: 192.168.65.1, server: localhost.com, request: "POST /api/quiz-import HTTP/1.1", host: "localhost.com"
+2024/05/07 13:19:34 [warn] 24#24: *107 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000003, client: 192.168.65.1, server: localhost.com, request: "POST /api/quiz-import HTTP/1.1", host: "localhost.com"
+2024/05/07 13:19:56 [warn] 24#24: *107 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000004, client: 192.168.65.1, server: localhost.com, request: "POST /api/quiz-import HTTP/1.1", host: "localhost.com"
+2024/05/25 05:05:10 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/05/27 16:13:08 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/05/28 15:14:14 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/05/31 06:05:28 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/06/02 14:04:53 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/06/04 16:54:32 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/06/07 09:22:17 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18
+2024/06/10 10:06:51 [emerg] 1#1: host not found in upstream "php83" in /etc/nginx/sites-enabled/localhost.com.conf:18

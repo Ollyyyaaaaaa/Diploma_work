@@ -1,0 +1,473 @@
+[
+	{
+		"testName": "Check negative cases with sum (less than min in paywaycurrencies)",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 9,
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field must be at least 10."
+				]
+			}
+		},
+		"responseCode": "422",
+		"role": "ADMIN"
+	},
+	{
+		"testName": "Check negative cases with sum (more than max in paywaycurrencies)",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 1001,
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field must not be greater than 1000."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with sum (more than max_limit in payway)",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 100001,
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field must not be greater than 1000."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with sum (\"\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": "",
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field is required."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with sum (\"56475647564\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": "56475647564",
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field must not be greater than 1000."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with sum (\"fbhvjfvjdf\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": "fbhvjfvjdf",
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field must be a number."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with sum (\"TRUE\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": true,
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field must be a number.",
+					"The sum field must be at least 10."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with sum (\"-15,5\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": -15.5,
+			"payway_currency_id": 6
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"sum": [
+					"The sum field must be at least 10."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with paywaycurrency (\"\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 100,
+			"payway_currency_id": ""
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"payway_currency_id": [
+					"The payway currency id field is required."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with paywaycurrency (TRUE)",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 100,
+			"payway_currency_id": true
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"payway_currency_id": [
+					"The selected payway_currency_id is invalid."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with paywaycurrency (invalid number (220))",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 100,
+			"payway_currency_id": 220
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"payway_currency_id": [
+					"The selected payway currency id is invalid."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with paywaycurrency (\"544454\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 100,
+			"payway_currency_id": "544454"
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"payway_currency_id": [
+					"The selected payway currency id is invalid."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Check negative cases with paywaycurrency (\"fjdkvdnffv\")",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 100,
+			"payway_currency_id": "fjdkvdnffv"
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"payway_currency_id": [
+					"The payway currency id field must be a number."
+				]
+			}
+		},
+		"responseCode": "500"
+	},
+	{
+		"testName": "Try to make fiat transaction with unavailable payway_currency (is_active: false)",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 15,
+			"payway_currency_id": 1
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"payway_currency_id": [
+					"The selected payway_currency_id is invalid."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Try to make crypto transaction with unavailable payway_currency (is_active: false)",
+		"tag": "transaction",
+		"method": "post",
+		"endPoint": "/api/transaction",
+		"requestBody": {
+			"is_out": true,
+			"sum": 15,
+			"payway_currency_id": 11
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"payway_currency_id": [
+					"The selected payway_currency_id is invalid."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Try to register by already existing user",
+		"tag": "register",
+		"method": "post",
+		"endPoint": "/api/register",
+		"requestBody": {
+			"email": "ollyyyaaaaaa@gmail.com",
+			"password": "Olha28Sasha19!",
+			"name": "Olha_custom"
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"email": [
+					"The email has already been taken."
+				],
+				"name": [
+					"The name has already been taken."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Try to login with incorrect password (123)",
+		"tag": "login",
+		"method": "post",
+		"endPoint": "/api/login",
+		"requestBody": {
+			"email": "ollyyyaaaaaa@gmail.com",
+			"password": 123
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"password": [
+					"The password field must be a string."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Try to login with incorrect password (\"\")",
+		"tag": "login",
+		"method": "post",
+		"endPoint": "/api/login",
+		"requestBody": {
+			"email": "ollyyyaaaaaa@gmail.com",
+			"password": ""
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"password": [
+					"The password field is required."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Try to register with incorrect password (unmatched requirements)",
+		"tag": "register",
+		"method": "post",
+		"endPoint": "/api/register",
+		"requestBody": {
+			"email": "ollyyyaaaaaa@gmail.com",
+			"password": "Olha28Sasha19",
+			"name": "Olha_custom1"
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"email": [
+					"The email has already been taken."
+				],
+				"password": [
+					"The password field format is invalid."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Try to register with already existing name",
+		"tag": "register",
+		"method": "post",
+		"endPoint": "/api/register",
+		"requestBody": {
+			"email": "ollyyyaaaaaa@gmail.com",
+			"password": "Olha28Sasha19!",
+			"name": "Olha_custom1"
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"email": [
+					"The email has already been taken."
+				]
+			}
+		},
+		"responseCode": "422"
+	},
+	{
+		"testName": "Try to register with already existing email",
+		"tag": "register",
+		"method": "post",
+		"endPoint": "/api/register",
+		"requestBody": {
+			"email": "ollyyyaaaaaa@gmail.com",
+			"password": "Olha28Sasha19!",
+			"name": "Olha_custom"
+		},
+		"responseData": {
+			"error": {
+				"code": 422
+			},
+			"fields": {
+				"email": [
+					"The email has already been taken."
+				],
+				"name": [
+					"The name has already been taken."
+				]
+			}
+		},
+		"responseCode": "422"
+	}
+]

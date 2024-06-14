@@ -1,0 +1,15 @@
+{
+    "reporterEnabled": "mochawesome",
+    "mochawesomeReporterOptions": {
+        "reportDir":"./src/mochaReports",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+    },
+    "mochaSpecJsonOutputReporterReporterOptions": {
+        "fileName": "report.json",
+        "filePath": "./src/reports",
+        "hierarchy": false
+    }
+}

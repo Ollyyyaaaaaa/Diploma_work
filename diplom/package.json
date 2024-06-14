@@ -1,0 +1,36 @@
+{
+  "name": "diplom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/src/tests/api.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "clean-reports": "rm -R -f src/mochaReports",
+    "telegram-report": "node src/core/report-to-telegram.js",
+    "get-google-data": "node src/core/get-data-from-sheet.js 2 testDataFromGoogle.json",
+    "test-api": "npm run clean-reports; mocha --timeout 70000 src/tests/api.js --reporter ./node_modules/mocha-multi-reporters/lib/MultiReporters.js --reporter-options configFile=./src/config/mocha-config.json || :",
+    "test-api-pos": "node src/core/get-data-from-sheet.js 2 testDataFromGoogle.json; npm run test-api; npm run telegram-report API POSITIVE",
+    "test-api-neg": "node src/core/get-data-from-sheet.js 3 testDataFromGoogle.json; npm run test-api; npm run telegram-report API NEGATIVE"
+  },
+  "devDependencies": {
+    "chai": "1.10.0",
+    "chai-http": "4.3.0",
+    "chakram": "^1.5.0",
+    "eslint": "^9.3.0",
+    "expect": "^27.3.1",
+    "mocha": "^8.4.0",
+    "mocha-json-report": "0.0.2",
+    "mocha-multi-reporters": "1.1.7",
+    "mocha-spec-json-output-reporter": "1.1.6"
+  },
+  "dependencies": {
+    "expect.js": "^0.3.1",
+    "google-spreadsheet": "^3.1.15",
+    "mocha-retry": "^0.1.0",
+    "mochawesome": "^7.1.3",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
